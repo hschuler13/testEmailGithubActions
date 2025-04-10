@@ -1,27 +1,25 @@
-name: weekly emails
+name: Report
 
 on:
   schedule:
-  - cron: "0 9 * * *"
-  workflow_dispatch: 
+    - cron: "0 14 * * *"
+  workflow_dispatch:
 
 env:
-  FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
-  FROM_PASSWORD: ${{ secrets.FROM_PASSWORD }}
-  TO_EMAIL: ${{ secrets.TO_EMAIL }}
+  FROM_EMAIL: ${{ process.env.FROM_EMAIL }}
+  FROM_PASSWORD: ${{ process.env.FROM_PASSWORD }}
+  TO_EMAIL: ${{ process.env.TO_EMAIL }}
 
 jobs:
   report:
-    strategy:
-      matrix:
-        node-version: [14.x]
-
+    runs-on: ubuntu-latest
     steps:
-      - name: Use node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
-      
-      - run: pnpm i
+          node-version: 12
+
+      - run: pnpm ci
+
       - run: npx tsx main.ts
-      - run: pnpm test
