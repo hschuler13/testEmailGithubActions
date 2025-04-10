@@ -20,6 +20,6 @@ jobs:
         with:
           node-version: 12
 
-      - run: pnpm ci
+      - run: pnpm i --frozen-lockfile
 
       - run: npx tsx main.ts
