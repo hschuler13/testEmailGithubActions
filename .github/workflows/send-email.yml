@@ -6,9 +6,9 @@ on:
   workflow_dispatch:
 
 env:
-  FROM_EMAIL: ${{ process.env.FROM_EMAIL }}
-  FROM_PASSWORD: ${{ process.env.FROM_PASSWORD }}
-  TO_EMAIL: ${{ process.env.TO_EMAIL }}
+  FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
+  FROM_PASSWORD: ${{ secrets.FROM_PASSWORD }}
+  TO_EMAIL: ${{ secrets.TO_EMAIL }}
 
 jobs:
   report:
