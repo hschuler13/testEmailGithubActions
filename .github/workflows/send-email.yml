@@ -13,8 +13,6 @@ env:
 jobs:
   report:
 
-  runs-on: ubuntu-latest
-
   strategy:
     matrix:
       node-version: [14.x]
