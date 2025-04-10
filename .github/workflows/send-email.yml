@@ -18,7 +18,9 @@ jobs:
 
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 22
+
+      - run: npm install -g pnpm
 
       - run: pnpm i --frozen-lockfile
 
