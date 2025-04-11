@@ -1,9 +1,22 @@
 require('dotenv').config()
 import nodemailer from "nodemailer";
+import axios from "axios"
 
 (async function run(){
     console.log('test')
-
+    
+    let toEmails;
+    const handleSubmit = async (e: { preventDefault: () => void }) => {
+      e.preventDefault();
+      try {
+        const response = await axios.get("app/api/hobby");
+        console.log(response);
+        toEmails = response.data.arr.join()
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 465,
@@ -16,7 +29,7 @@ import nodemailer from "nodemailer";
 
       await transporter.sendMail({
         from: process.env.FROM_EMAIL, // sender address
-        to: process.env.TO_EMAIL, // list of receivers
+        to: toEmails, // list of receivers
         subject: "Test", // Subject line
         text: `hewwo`, // plain text body
         html: `<b>hewwo</b>`, // html body

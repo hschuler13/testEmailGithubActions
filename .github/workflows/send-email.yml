@@ -9,6 +9,7 @@ env:
   FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
   FROM_PASSWORD: ${{ secrets.FROM_PASSWORD }}
   TO_EMAIL: ${{ secrets.TO_EMAIL }}
+  MONGODB_URI: ${{ secrets.MONODB_URI }}
 
 jobs:
   report:
